@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Winter Escape ❤️</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #556B2F; /* Dark Olive Green */
+            --secondary: #8FBC8F; /* Dark Sea Green */
+            --accent: #D2691E; /* Warm Earth */
+            --bg: #FDFBF7; /* Warm White */
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E50;
+            --text-light: #7F8C8D;
+            --shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-main);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 70vh;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .scroll-down {
+            margin-top: 40px;
+            animation: bounce 2s infinite;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* --- Navigation --- */
+        .nav-wrapper {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            margin-top: -30px; /* Overlap hero */
+        }
+
+        .nav-pills {
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            border: none;
+            background: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            color: var(--primary);
+            background-color: #f0f0f0;
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(85, 107, 47, 0.4);
+        }
+
+        /* --- Content Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); scale: 0.98; }
+            to { opacity: 1; transform: translateY(0); scale: 1; }
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .section-title span {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* --- Cards --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: inline-block;
+            background: #F0F7F0;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            border: 1px solid var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(143, 188, 143, 0.3) 0%, rgba(143, 188, 143, 0.1) 100%);
+            padding: 0 5px;
+            border-radius: 3px;
+            color: #2e4a2e;
+            font-weight: 600;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Budget Table --- */
+        .budget-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+        
+        .budget-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .budget-row:last-child {
+            border-bottom: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-pills { width: 90%; justify-content: space-between; }
+            .nav-btn { padding: 10px 15px; font-size: 0.85rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Winter Escape</h1>
+        <p>Dec 20 — Dec 28</p>
+        <p style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">Russian River & Mendocino Coast</p>
+        <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+    </header>
+
+    <div class="nav-wrapper">
+        <div class="nav-pills">
+            <button class="nav-btn active" onclick="switchTab('redwoods')">The Redwoods</button>
+            <button class="nav-btn" onclick="switchTab('coast')">The Coast</button>
+            <button class="nav-btn" onclick="switchTab('budget')">Budget</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div id="redwoods" class="tab-content active">
+            <div class="section-title">
+                <span>Part I: Dec 20–23</span>
+                <h2>The Russian River Valley</h2>
+                <p>Misty mornings, ancient trees, and cozy fires.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-home"></i></div>
+                    <h3>Cottages on River Road</h3>
+                    <p>A private studio cottage nestled in the trees. We have our own porch and access to fire pits for evening s'mores.</p>
+                    <a href="https://goo.gl/maps/placeholder" target="_blank" class="btn-link">View Map <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-carrot"></i></div>
+                    <h3>Vegetarian Dining</h3>
+                    <p><span class="tag">Dinner</span> <strong>boon eat + drink:</strong> We must order the <span class="highlight">Polenta Lasagna</span>.</p>
+                    <p><span class="tag">Lunch</span> <strong>The Farmhand:</strong> Casual river views with roasted veggie sandwiches.</p>
+                    <p><span class="tag">Special</span> <strong>Little Saint:</strong> A 100% plant-based farm-to-table experience in Healdsburg.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tree"></i></div>
+                    <h3>To Do</h3>
+                    <p><strong>Armstrong Redwoods:</strong> A silent, flat walk among 1,400-year-old trees.</p>
+                    <p><strong>Korbel Champagne:</strong> Holiday tasting in a historic cellar.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="coast" class="tab-content">
+            <div class="section-title">
+                <span>Part II: Dec 23–28</span>
+                <h2>The Mendocino Coast</h2>
+                <p>Rugged cliffs, crashing waves, and Victorian charm.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-bed"></i></div>
+                    <h3>Mendo Bungalow</h3>
+                    <p>Our own quiet bungalow just south of the village. It offers a "local" feel, perfect for settling in for 5 nights of peace.</p>
+                    <a href="https://goo.gl/maps/placeholder2" target="_blank" class="btn-link">View Map <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Plant-Based Heaven</h3>
+                    <p><span class="tag">Highlight</span> <strong>Ravens Restaurant:</strong> A fully vegan fine-dining lodge. <span class="highlight">Sea Palm Strudel</span> is a must.</p>
+                    <p><span class="tag">Fun</span> <strong>Fog Eater Cafe:</strong> "Cal-Bama" vegetarian comfort food (biscuits & pimento!).</p>
+                    <p><span class="tag">Easy</span> <strong>GoodLife Cafe:</strong> Gluten-free pastries & coffee.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-water"></i></div>
+                    <h3>To Do</h3>
+                    <p><strong>Botanical Gardens:</strong> Winter heathers and cliff-edge ocean views.</p>
+                    <p><strong>The Skunk Train:</strong> A relaxing ride through the redwoods on the "Pudding Creek Express".</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="budget" class="tab-content">
+            <div class="section-title">
+                <span>Financial Plan</span>
+                <h2>Trip Budget</h2>
+            </div>
+            
+            <div class="budget-card">
+                <div class="budget-row">
+                    <span>Accommodations (8 nights)</span>
+                    <span>~$1,400</span>
+                </div>
+                <div class="budget-row">
+                    <span>Dining (Vegetarian Feast)</span>
+                    <span>~$1,000</span>
+                </div>
+                <div class="budget-row">
+                    <span>Gas & Activities (Train, Gardens)</span>
+                    <span>~$300</span>
+                </div>
+                <div class="budget-row">
+                    <span>Buffer / Souvenirs</span>
+                    <span>~$100</span>
+                </div>
+                <div class="budget-row">
+                    <span>Total Estimate</span>
+                    <span>~$2,800</span>
+                </div>
+            </div>
+            <p style="text-align: center; color: #999; margin-top: 20px; font-size: 0.8rem;">Target Budget: $3,000</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Looking forward to this adventure with you. <br> <i class="fas fa-heart" style="color: #e74c3c; margin-top: 10px;"></i></p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Deactivate all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate specific tab and button
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
