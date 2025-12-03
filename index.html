@@ -7,20 +7,21 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #556B2F; /* Dark Olive Green */
-            --secondary: #8FBC8F; /* Dark Sea Green */
-            --accent: #D2691E; /* Warm Earth */
-            --bg: #FDFBF7; /* Warm White */
+            /* UPDATED HIGH CONTRAST PALETTE */
+            --primary: #1A4D2E; /* Deep Forest Green */
+            --secondary: #2C5E4F; /* Dark Teal/Sage */
+            --accent: #C05515; /* Deep Burnt Orange */
+            --bg: #F8F8F5; /* Light Off-White */
             --card-bg: #FFFFFF;
-            --text-main: #2C3E50;
-            --text-light: #7F8C8D;
-            --shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+            --text-main: #111111; /* Near Black */
+            --text-light: #555555; /* Dark Gray for subtitles */
+            --shadow: 0 15px 35px -5px rgba(0,0,0,0.15);
         }
 
         body {
@@ -35,16 +36,18 @@
 
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: var(--text-main);
+            color: var(--primary);
+            font-weight: 700;
         }
 
         /* --- Hero Section --- */
         .hero {
             height: 70vh;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            /* Added a darker overlay for better text contrast on the image */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -57,28 +60,16 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            color: #FFFFFF;
+            color: white;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.5);
         }
 
         .hero p {
             font-size: 1.5rem;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .scroll-down {
-            margin-top: 40px;
-            animation: bounce 2s infinite;
-            font-size: 2rem;
-            color: rgba(255,255,255,0.8);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            opacity: 1;
         }
 
         /* --- Navigation --- */
@@ -88,16 +79,17 @@
             z-index: 100;
             display: flex;
             justify-content: center;
-            margin-top: -30px; /* Overlap hero */
+            margin-top: -30px;
         }
 
         .nav-pills {
             background: white;
             padding: 10px;
             border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             display: flex;
             gap: 10px;
+            border: 2px solid var(--primary);
         }
 
         .nav-btn {
@@ -106,27 +98,27 @@
             padding: 12px 25px;
             border-radius: 30px;
             font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            color: var(--text-light);
+            font-weight: 700;
+            color: var(--text-main);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .nav-btn:hover {
             color: var(--primary);
-            background-color: #f0f0f0;
+            background-color: #e8f0e8;
         }
 
         .nav-btn.active {
             background-color: var(--primary);
             color: white;
-            box-shadow: 0 5px 15px rgba(85, 107, 47, 0.4);
+            box-shadow: 0 5px 15px rgba(26, 77, 46, 0.5);
         }
 
         /* --- Content Layout --- */
         .container {
             max-width: 900px;
-            margin: 60px auto;
+            margin: 70px auto;
             padding: 0 20px;
         }
 
@@ -146,21 +138,21 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 10px;
             color: var(--primary);
         }
 
         .section-title span {
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
             color: var(--accent);
-            font-weight: bold;
+            font-weight: 800;
         }
 
         /* --- Cards --- */
@@ -174,66 +166,75 @@
             background: var(--card-bg);
             border-radius: 20px;
             box-shadow: var(--shadow);
-            padding: 30px;
+            padding: 35px;
             transition: transform 0.3s ease;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-top: 5px solid var(--secondary);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
 
         .card-icon {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 25px;
             display: inline-block;
-            background: #F0F7F0;
-            padding: 12px;
-            border-radius: 12px;
+            background: var(--secondary);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(44, 94, 79, 0.3);
         }
 
         .card h3 {
             margin-top: 0;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            color: var(--primary);
         }
 
         .tag {
             display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.8rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--accent);
+            color: white;
+            background-color: var(--accent);
             margin-bottom: 10px;
-            border: 1px solid var(--accent);
-            padding: 4px 10px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
         }
 
         .highlight {
-            background: linear-gradient(120deg, rgba(143, 188, 143, 0.3) 0%, rgba(143, 188, 143, 0.1) 100%);
-            padding: 0 5px;
-            border-radius: 3px;
-            color: #2e4a2e;
-            font-weight: 600;
+            background-color: #f0e6da; /* Light orange tint */
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent);
         }
 
         .btn-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 25px;
             text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
+            color: white;
+            background-color: var(--primary);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
             font-size: 0.9rem;
+            transition: background 0.3s;
+            box-shadow: 0 5px 15px rgba(26, 77, 46, 0.3);
         }
 
         .btn-link:hover {
-            text-decoration: underline;
+            background-color: var(--secondary);
         }
 
         /* --- Budget Table --- */
@@ -242,22 +243,24 @@
             border-radius: 20px;
             box-shadow: var(--shadow);
             padding: 40px;
+            border-top: 5px solid var(--primary);
         }
         
         .budget-row {
             display: flex;
             justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px dashed #e0e0e0;
+            padding: 18px 0;
+            border-bottom: 2px dotted #e0e0e0;
+            font-weight: 600;
         }
         
         .budget-row:last-child {
             border-bottom: none;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px solid var(--primary);
-            font-size: 1.2rem;
-            font-weight: 700;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 3px solid var(--primary);
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--primary);
         }
 
@@ -265,16 +268,17 @@
         footer {
             text-align: center;
             padding: 80px 20px;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         /* Mobile Optimization */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-pills { width: 90%; justify-content: space-between; }
-            .nav-btn { padding: 10px 15px; font-size: 0.85rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .nav-pills { width: 90%; justify-content: space-between; padding: 8px; }
+            .nav-btn { padding: 10px 12px; font-size: 0.8rem; }
             .card-grid { grid-template-columns: 1fr; }
+            .container { margin-top: 40px; }
         }
     </style>
 </head>
@@ -283,8 +287,7 @@
     <header class="hero">
         <h1>Winter Escape</h1>
         <p>Dec 20 — Dec 28</p>
-        <p style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">Russian River & Mendocino Coast</p>
-        <div class="scroll-down"><i class="fas fa-chevron-down"></i></div>
+        <p style="font-size: 1.1rem; margin-top: 15px; font-weight: 600;">Russian River & Mendocino Coast</p>
     </header>
 
     <div class="nav-wrapper">
@@ -301,7 +304,7 @@
             <div class="section-title">
                 <span>Part I: Dec 20–23</span>
                 <h2>The Russian River Valley</h2>
-                <p>Misty mornings, ancient trees, and cozy fires.</p>
+                <p style="color: var(--text-light);">Misty mornings, ancient trees, and cozy fires.</p>
             </div>
 
             <div class="card-grid">
@@ -309,7 +312,7 @@
                     <div class="card-icon"><i class="fas fa-home"></i></div>
                     <h3>Cottages on River Road</h3>
                     <p>A private studio cottage nestled in the trees. We have our own porch and access to fire pits for evening s'mores.</p>
-                    <a href="https://goo.gl/maps/placeholder" target="_blank" class="btn-link">View Map <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+on+River+Road+Guerneville+CA" target="_blank" class="btn-link">View Map <i class="fas fa-location-arrow"></i></a>
                 </div>
 
                 <div class="card">
@@ -333,7 +336,7 @@
             <div class="section-title">
                 <span>Part II: Dec 23–28</span>
                 <h2>The Mendocino Coast</h2>
-                <p>Rugged cliffs, crashing waves, and Victorian charm.</p>
+                <p style="color: var(--text-light);">Rugged cliffs, crashing waves, and Victorian charm.</p>
             </div>
 
             <div class="card-grid">
@@ -341,7 +344,7 @@
                     <div class="card-icon"><i class="fas fa-bed"></i></div>
                     <h3>Mendo Bungalow</h3>
                     <p>Our own quiet bungalow just south of the village. It offers a "local" feel, perfect for settling in for 5 nights of peace.</p>
-                    <a href="https://goo.gl/maps/placeholder2" target="_blank" class="btn-link">View Map <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mendo+Bungalow+Mendocino+CA" target="_blank" class="btn-link">View Map <i class="fas fa-location-arrow"></i></a>
                 </div>
 
                 <div class="card">
@@ -377,7 +380,7 @@
                     <span>~$1,000</span>
                 </div>
                 <div class="budget-row">
-                    <span>Gas & Activities (Train, Gardens)</span>
+                    <span>Gas & Activities</span>
                     <span>~$300</span>
                 </div>
                 <div class="budget-row">
@@ -389,13 +392,13 @@
                     <span>~$2,800</span>
                 </div>
             </div>
-            <p style="text-align: center; color: #999; margin-top: 20px; font-size: 0.8rem;">Target Budget: $3,000</p>
+            <p style="text-align: center; color: var(--text-light); margin-top: 25px; font-size: 0.9rem; font-weight: 600;">Target Budget: $3,000</p>
         </div>
 
     </div>
 
     <footer>
-        <p>Looking forward to this adventure with you. <br> <i class="fas fa-heart" style="color: #e74c3c; margin-top: 10px;"></i></p>
+        <p>Looking forward to this adventure with you. <br> <i class="fas fa-heart" style="color: var(--accent); margin-top: 15px; font-size: 1.5rem;"></i></p>
     </footer>
 
     <script>
