@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Winter Escape ❤️</title>
+    <title>Our Holiday Escape ❤️</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            /* UPDATED HIGH CONTRAST PALETTE */
-            --primary: #1A4D2E; /* Deep Forest Green */
-            --secondary: #2C5E4F; /* Dark Teal/Sage */
-            --accent: #C05515; /* Deep Burnt Orange */
-            --bg: #F8F8F5; /* Light Off-White */
+            /* Palette will change dynamically via JS */
+            --primary: #1A4D2E; 
+            --secondary: #4F7942;
+            --accent: #D35400;
+            --bg: #F9F9F9;
             --card-bg: #FFFFFF;
-            --text-main: #111111; /* Near Black */
-            --text-light: #555555; /* Dark Gray for subtitles */
-            --shadow: 0 15px 35px -5px rgba(0,0,0,0.15);
+            --text-main: #2C3E50;
+            --text-light: #555;
+            --shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
         }
+
+        /* Destination Themes */
+        .theme-mendo { --primary: #2F4F4F; --secondary: #5F9EA0; --accent: #D2691E; --hero-img: url('https://images.unsplash.com/photo-1520699049698-acd2fcc51056?auto=format&fit=crop&w=1950&q=80'); }
+        .theme-sd { --primary: #006994; --secondary: #4CA3DD; --accent: #F4D03F; --hero-img: url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1950&q=80'); }
+        .theme-ps { --primary: #A0522D; --secondary: #CD853F; --accent: #E67E22; --hero-img: url('https://images.unsplash.com/photo-1561577553-621762c95b68?auto=format&fit=crop&w=1950&q=80'); }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -30,392 +35,386 @@
             color: var(--text-main);
             margin: 0;
             padding: 0;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            transition: background 0.5s ease;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
-            font-weight: 700;
-        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* --- Hero Section --- */
+        /* HERO SECTION */
         .hero {
-            height: 70vh;
-            /* Added a darker overlay for better text contrast on the image */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            height: 60vh;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--hero-img);
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             color: white;
+            text-align: center;
+            transition: background-image 0.5s ease-in-out;
             padding: 20px;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 0 3px 15px rgba(0,0,0,0.5);
-        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; }
 
-        .hero p {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            opacity: 1;
-        }
-
-        /* --- Navigation --- */
-        .nav-wrapper {
-            position: sticky;
-            top: 20px;
-            z-index: 100;
+        /* DESTINATION SELECTOR */
+        .dest-selector {
             display: flex;
             justify-content: center;
+            gap: 15px;
             margin-top: -30px;
+            padding-bottom: 20px;
         }
 
-        .nav-pills {
+        .dest-btn {
             background: white;
-            padding: 10px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            gap: 10px;
-            border: 2px solid var(--primary);
-        }
-
-        .nav-btn {
             border: none;
-            background: none;
-            padding: 12px 25px;
+            padding: 15px 25px;
             border-radius: 30px;
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            color: var(--text-main);
+            color: #777;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-btn:hover {
-            color: var(--primary);
-            background-color: #e8f0e8;
-        }
-
-        .nav-btn.active {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 5px 15px rgba(26, 77, 46, 0.5);
-        }
-
-        /* --- Content Layout --- */
-        .container {
-            max-width: 900px;
-            margin: 70px auto;
-            padding: 0 20px;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); scale: 0.98; }
-            to { opacity: 1; transform: translateY(0); scale: 1; }
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+        .dest-btn:hover { transform: translateY(-3px); color: var(--primary); }
         
-        .section-title h2 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: var(--primary);
+        .dest-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
         }
 
-        .section-title span {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 800;
+        /* MAIN CONTAINER */
+        .container { max-width: 900px; margin: 20px auto; padding: 0 20px; }
+
+        /* SUB-NAVIGATION (Stay/Eat/Do) */
+        .sub-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #eee;
         }
 
-        /* --- Cards --- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .sub-nav button {
+            background: none;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            color: #999;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            position: relative;
         }
 
+        .sub-nav button.active { color: var(--primary); }
+        
+        .sub-nav button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section { display: none; animation: fadeIn 0.5s; }
+        .content-section.active { display: block; }
+
+        /* CARDS */
         .card {
             background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 35px;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.05);
-            border-top: 5px solid var(--secondary);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-        }
-
-        .card-icon {
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 25px;
-            display: inline-block;
-            background: var(--secondary);
-            padding: 15px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(44, 94, 79, 0.3);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
         }
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
+        .card h3 { color: var(--primary); margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        
         .tag {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 800;
+            background-color: #f0f0f0;
+            color: var(--text-main);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: white;
-            background-color: var(--accent);
-            margin-bottom: 10px;
-            padding: 6px 12px;
-            border-radius: 6px;
+            font-weight: 700;
+            margin-right: 8px;
         }
 
-        .highlight {
-            background-color: #f0e6da; /* Light orange tint */
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--accent);
-            font-weight: 700;
-            border-bottom: 2px solid var(--accent);
-        }
+        .tag.veg { background-color: #e8f5e9; color: #2e7d32; }
+        .tag.flight { background-color: #e3f2fd; color: #1565c0; }
 
         .btn-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 25px;
+            display: inline-block;
+            margin-top: 15px;
             text-decoration: none;
-            color: white;
-            background-color: var(--primary);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: background 0.3s;
-            box-shadow: 0 5px 15px rgba(26, 77, 46, 0.3);
-        }
-
-        .btn-link:hover {
-            background-color: var(--secondary);
-        }
-
-        /* --- Budget Table --- */
-        .budget-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            padding: 40px;
-            border-top: 5px solid var(--primary);
-        }
-        
-        .budget-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 18px 0;
-            border-bottom: 2px dotted #e0e0e0;
-            font-weight: 600;
-        }
-        
-        .budget-row:last-child {
-            border-bottom: none;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 3px solid var(--primary);
-            font-size: 1.4rem;
-            font-weight: 800;
             color: var(--primary);
-        }
-
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 80px 20px;
-            color: var(--text-main);
             font-weight: 600;
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
         }
 
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            .nav-pills { width: 90%; justify-content: space-between; padding: 8px; }
-            .nav-btn { padding: 10px 12px; font-size: 0.8rem; }
-            .card-grid { grid-template-columns: 1fr; }
-            .container { margin-top: 40px; }
+        .btn-link:hover { background: var(--primary); color: white; }
+
+        /* BUDGET BOX */
+        .budget-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px dashed #ddd;
+            margin-top: 40px;
+        }
+
+        .budget-row { display: flex; justify-content: space-between; padding: 8px 0; }
+        .total { font-weight: 700; font-size: 1.2rem; color: var(--accent); border-top: 2px solid #eee; margin-top: 10px; padding-top: 10px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            .dest-btn { padding: 10px 15px; font-size: 0.8rem; }
+            .sub-nav button { padding: 10px 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
-<body>
+<body class="theme-mendo">
 
     <header class="hero">
-        <h1>Winter Escape</h1>
-        <p>Dec 20 — Dec 28</p>
-        <p style="font-size: 1.1rem; margin-top: 15px; font-weight: 600;">Russian River & Mendocino Coast</p>
+        <h1 id="hero-title">Winter Escape</h1>
+        <p id="hero-subtitle">Mendocino & Russian River</p>
     </header>
 
-    <div class="nav-wrapper">
-        <div class="nav-pills">
-            <button class="nav-btn active" onclick="switchTab('redwoods')">The Redwoods</button>
-            <button class="nav-btn" onclick="switchTab('coast')">The Coast</button>
-            <button class="nav-btn" onclick="switchTab('budget')">Budget</button>
-        </div>
+    <div class="dest-selector">
+        <button class="dest-btn active" onclick="setDestination('mendo')">
+            <i class="fas fa-tree"></i> Redwoods
+        </button>
+        <button class="dest-btn" onclick="setDestination('sd')">
+            <i class="fas fa-sun"></i> San Diego
+        </button>
+        <button class="dest-btn" onclick="setDestination('ps')">
+            <i class="fas fa-mountain"></i> Palm Springs
+        </button>
     </div>
 
     <div class="container">
+        <div class="sub-nav">
+            <button class="active" onclick="setTab('stay')">Where to Stay</button>
+            <button onclick="setTab('eat')">Vegetarian Eats</button>
+            <button onclick="setTab('do')">Relaxing</button>
+        </div>
 
-        <div id="redwoods" class="tab-content active">
-            <div class="section-title">
-                <span>Part I: Dec 20–23</span>
-                <h2>The Russian River Valley</h2>
-                <p style="color: var(--text-light);">Misty mornings, ancient trees, and cozy fires.</p>
+        <div id="mendo-content" class="dest-content">
+            <div id="mendo-stay" class="content-section active">
+                <div class="card">
+                    <h3><i class="fas fa-home"></i> Cottages on River Road (Guerneville)</h3>
+                    <p><strong>Dec 20-23:</strong> Private studio cottages in the redwoods. Features fire pits for s'mores and a very quiet atmosphere.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+On+River+Road+Guerneville" target="_blank" class="btn-link">View Map</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-bed"></i> Mendo Bungalow (Mendocino)</h3>
+                    <p><strong>Dec 23-28:</strong> A private rental just south of the village. Feels like a home base rather than a hotel.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mendo+Bungalow+Mendocino" target="_blank" class="btn-link">View Map</a>
+                </div>
+                <div class="budget-box">
+                    <h3>Estimated Budget</h3>
+                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,400</span></div>
+                    <div class="budget-row"><span>Gas & Activities</span><span>~$300</span></div>
+                    <div class="budget-row"><span>Dining</span><span>~$1,000</span></div>
+                    <div class="budget-row total"><span>Total: ~$2,700</span></div>
+                </div>
             </div>
 
-            <div class="card-grid">
+            <div id="mendo-eat" class="content-section">
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-home"></i></div>
-                    <h3>Cottages on River Road</h3>
-                    <p>A private studio cottage nestled in the trees. We have our own porch and access to fire pits for evening s'mores.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+on+River+Road+Guerneville+CA" target="_blank" class="btn-link">View Map <i class="fas fa-location-arrow"></i></a>
+                    <h3><span class="tag veg">Vegan</span> Ravens Restaurant</h3>
+                    <p>The crown jewel. A fully vegan fine-dining lodge at the Stanford Inn. Romantic ocean views and incredible food.</p>
                 </div>
-
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-carrot"></i></div>
-                    <h3>Vegetarian Dining</h3>
-                    <p><span class="tag">Dinner</span> <strong>boon eat + drink:</strong> We must order the <span class="highlight">Polenta Lasagna</span>.</p>
-                    <p><span class="tag">Lunch</span> <strong>The Farmhand:</strong> Casual river views with roasted veggie sandwiches.</p>
-                    <p><span class="tag">Special</span> <strong>Little Saint:</strong> A 100% plant-based farm-to-table experience in Healdsburg.</p>
+                    <h3><span class="tag veg">Vegetarian</span> Fog Eater Cafe</h3>
+                    <p>"Cal-Bama" cuisine! Think vegetarian Southern comfort food (biscuits, pimento cheese) in a hip setting.</p>
                 </div>
-
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-tree"></i></div>
-                    <h3>To Do</h3>
-                    <p><strong>Armstrong Redwoods:</strong> A silent, flat walk among 1,400-year-old trees.</p>
-                    <p><strong>Korbel Champagne:</strong> Holiday tasting in a historic cellar.</p>
+                    <h3><span class="tag">Local</span> boon eat + drink</h3>
+                    <p>Located in Guerneville. You must try the <strong>Polenta Lasagna</strong>.</p>
+                </div>
+            </div>
+
+            <div id="mendo-do" class="content-section">
+                <div class="card">
+                    <h3><i class="fas fa-leaf"></i> Botanical Gardens</h3>
+                    <p>Walk through the winter heathers straight to the cliff's edge to watch the ocean.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-train"></i> The Skunk Train</h3>
+                    <p>A relaxing ride through the redwoods on the "Pudding Creek Express". No hiking required.</p>
                 </div>
             </div>
         </div>
 
-        <div id="coast" class="tab-content">
-            <div class="section-title">
-                <span>Part II: Dec 23–28</span>
-                <h2>The Mendocino Coast</h2>
-                <p style="color: var(--text-light);">Rugged cliffs, crashing waves, and Victorian charm.</p>
+        <div id="sd-content" class="dest-content" style="display:none;">
+            <div id="sd-stay" class="content-section active">
+                <div class="card">
+                    <h3><span class="tag flight">Fly or Drive</span> Getting There</h3>
+                    <p>Flights from SJC to SAN are surprisingly affordable (~$600 total). Or we can drive (7-8 hours) and stop in SLO.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-hotel"></i> Bahia Resort Hotel</h3>
+                    <p>Located on Mission Bay. It's calm, walkable, and close to the ocean but away from the downtown noise.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Bahia+Resort+Hotel+San+Diego" target="_blank" class="btn-link">View Map</a>
+                </div>
+                <div class="budget-box">
+                    <h3>Estimated Budget (Flying)</h3>
+                    <div class="budget-row"><span>Flights (2 ppl)</span><span>~$600</span></div>
+                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,400</span></div>
+                    <div class="budget-row"><span>Dining & Ubers</span><span>~$900</span></div>
+                    <div class="budget-row total"><span>Total: ~$2,900</span></div>
+                </div>
             </div>
 
-            <div class="card-grid">
+            <div id="sd-eat" class="content-section">
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-bed"></i></div>
-                    <h3>Mendo Bungalow</h3>
-                    <p>Our own quiet bungalow just south of the village. It offers a "local" feel, perfect for settling in for 5 nights of peace.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Mendo+Bungalow+Mendocino+CA" target="_blank" class="btn-link">View Map <i class="fas fa-location-arrow"></i></a>
+                    <h3><span class="tag veg">Vegan</span> Trilogy Sanctuary</h3>
+                    <p>A rooftop organic cafe in La Jolla with ocean views. Famous for yoga vibes and incredible vegan nachos/bowls.</p>
                 </div>
-
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-seedling"></i></div>
-                    <h3>Plant-Based Heaven</h3>
-                    <p><span class="tag">Highlight</span> <strong>Ravens Restaurant:</strong> A fully vegan fine-dining lodge. <span class="highlight">Sea Palm Strudel</span> is a must.</p>
-                    <p><span class="tag">Fun</span> <strong>Fog Eater Cafe:</strong> "Cal-Bama" vegetarian comfort food (biscuits & pimento!).</p>
-                    <p><span class="tag">Easy</span> <strong>GoodLife Cafe:</strong> Gluten-free pastries & coffee.</p>
+                    <h3><span class="tag">Breakfast</span> The Cottage</h3>
+                    <p>An iconic La Jolla spot. Great vegetarian omelets and French toast on a white picket fence patio.</p>
                 </div>
-
                 <div class="card">
-                    <div class="card-icon"><i class="fas fa-water"></i></div>
-                    <h3>To Do</h3>
-                    <p><strong>Botanical Gardens:</strong> Winter heathers and cliff-edge ocean views.</p>
-                    <p><strong>The Skunk Train:</strong> A relaxing ride through the redwoods on the "Pudding Creek Express".</p>
+                    <h3><span class="tag">Casual</span> Second Nature</h3>
+                    <p>Pacific Beach. A very plant-forward menu with a cool, open-air atmosphere.</p>
+                </div>
+            </div>
+
+            <div id="sd-do" class="content-section">
+                <div class="card">
+                    <h3><i class="fas fa-umbrella-beach"></i> La Jolla Cove</h3>
+                    <p>Watch the seals and sea lions. It's a beautiful, easy walk along the coast.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-university"></i> Balboa Park</h3>
+                    <p>Wander through the Spanish architecture and gardens. We can visit the museums or just picnic on the grass.</p>
                 </div>
             </div>
         </div>
 
-        <div id="budget" class="tab-content">
-            <div class="section-title">
-                <span>Financial Plan</span>
-                <h2>Trip Budget</h2>
-            </div>
-            
-            <div class="budget-card">
-                <div class="budget-row">
-                    <span>Accommodations (8 nights)</span>
-                    <span>~$1,400</span>
+        <div id="ps-content" class="dest-content" style="display:none;">
+            <div id="ps-stay" class="content-section active">
+                <div class="card">
+                    <h3><i class="fas fa-car"></i> Road Trip Only</h3>
+                    <p>Flying is too pricey for this dates, so we drive (~6-7 hrs). It's a fun road trip!</p>
                 </div>
-                <div class="budget-row">
-                    <span>Dining (Vegetarian Feast)</span>
-                    <span>~$1,000</span>
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> The Paloma Resort</h3>
+                    <p>A colorful, mid-century modern resort. Very relaxing pool area and great views of the mountains.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The+Paloma+Resort+Palm+Springs" target="_blank" class="btn-link">View Map</a>
                 </div>
-                <div class="budget-row">
-                    <span>Gas & Activities</span>
-                    <span>~$300</span>
-                </div>
-                <div class="budget-row">
-                    <span>Buffer / Souvenirs</span>
-                    <span>~$100</span>
-                </div>
-                <div class="budget-row">
-                    <span>Total Estimate</span>
-                    <span>~$2,800</span>
+                <div class="budget-box">
+                    <h3>Estimated Budget</h3>
+                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,100</span></div>
+                    <div class="budget-row"><span>Gas & Parking</span><span>~$200</span></div>
+                    <div class="budget-row"><span>Dining (Feast!)</span><span>~$1,400</span></div>
+                    <div class="budget-row total"><span>Total: ~$2,700</span></div>
+                    <p style="font-size:0.8rem; margin-top:10px;">*Most budget friendly option, leaves lots for food!</p>
                 </div>
             </div>
-            <p style="text-align: center; color: var(--text-light); margin-top: 25px; font-size: 0.9rem; font-weight: 600;">Target Budget: $3,000</p>
+
+            <div id="ps-eat" class="content-section">
+                <div class="card">
+                    <h3><span class="tag">Romantic</span> Farm</h3>
+                    <p>Intimate, Provençal-style dining with a beautiful garden patio. Very vegetarian friendly.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="tag veg">Vegan</span> Chef Tanya's Kitchen</h3>
+                    <p>A legendary spot for vegetarian deli sandwiches. Perfect for picking up a lunch to take to the park.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="tag">Comfort</span> Native Foods</h3>
+                    <p>Fast-casual vegan food. Great for a quick, hearty dinner after a day in the sun.</p>
+                </div>
+            </div>
+
+            <div id="ps-do" class="content-section">
+                <div class="card">
+                    <h3><i class="fas fa-mountain"></i> Aerial Tramway</h3>
+                    <p>Take the rotating tram up the mountain for incredible views (and cooler air).</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-seedling"></i> Moorten Botanical Garden</h3>
+                    <p>A "cactarium"! A short, flat, and very unique walk through desert plants.</p>
+                </div>
+            </div>
         </div>
 
     </div>
 
-    <footer>
-        <p>Looking forward to this adventure with you. <br> <i class="fas fa-heart" style="color: var(--accent); margin-top: 15px; font-size: 1.5rem;"></i></p>
-    </footer>
-
     <script>
-        function switchTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Deactivate all buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+        // Data for dynamic title/theme changes
+        const destinations = {
+            'mendo': { title: 'The Redwoods', subtitle: 'Mendocino & Russian River', theme: 'theme-mendo' },
+            'sd': { title: 'SoCal Coast', subtitle: 'San Diego & La Jolla', theme: 'theme-sd' },
+            'ps': { title: 'Desert Escape', subtitle: 'Palm Springs', theme: 'theme-ps' }
+        };
 
-            // Activate specific tab and button
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+        let currentDest = 'mendo';
+
+        function setDestination(destId) {
+            currentDest = destId;
+            
+            // 1. Update Buttons
+            document.querySelectorAll('.dest-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // 2. Update Theme & Hero
+            document.body.className = destinations[destId].theme;
+            document.getElementById('hero-title').innerText = destinations[destId].title;
+            document.getElementById('hero-subtitle').innerText = destinations[destId].subtitle;
+
+            // 3. Hide all destination content divs
+            document.querySelectorAll('.dest-content').forEach(div => div.style.display = 'none');
+            
+            // 4. Show selected destination content
+            document.getElementById(destId + '-content').style.display = 'block';
+
+            // 5. Reset sub-tabs to "Stay"
+            setTab('stay');
+            
+            // Reset sub-nav buttons visual state
+            document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.sub-nav button:first-child').classList.add('active');
+        }
+
+        function setTab(tabName) {
+            // Update Sub-Nav Buttons
+            if(event) {
+                document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
+                if(event.target.tagName === 'BUTTON') event.target.classList.add('active');
+            }
+
+            // Hide all sections within current destination
+            const container = document.getElementById(currentDest + '-content');
+            container.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+
+            // Show target section
+            document.getElementById(currentDest + '-' + tabName).classList.add('active');
         }
     </script>
 </body>
