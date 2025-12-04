@@ -25,9 +25,14 @@
         }
 
         /* Destination Themes */
-        .theme-mendo { --primary: #2F4F4F; --secondary: #5F9EA0; --accent: #D2691E; --hero-img: url('https://images.unsplash.com/photo-1520699049698-acd2fcc51056?auto=format&fit=crop&w=1950&q=80'); }
+        /* Updated Mendo Image: Misty Redwoods */
+        .theme-mendo { --primary: #2F4F4F; --secondary: #5F9EA0; --accent: #D2691E; --hero-img: url('https://images.unsplash.com/photo-1513977055326-8dc627545931?auto=format&fit=crop&w=1950&q=80'); }
+        
+        /* Updated San Diego Image: La Jolla Coast */
         .theme-sd { --primary: #006994; --secondary: #4CA3DD; --accent: #F4D03F; --hero-img: url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?auto=format&fit=crop&w=1950&q=80'); }
-        .theme-ps { --primary: #A0522D; --secondary: #CD853F; --accent: #E67E22; --hero-img: url('https://images.unsplash.com/photo-1561577553-621762c95b68?auto=format&fit=crop&w=1950&q=80'); }
+        
+        /* Updated Palm Springs Image: Desert Mountains */
+        .theme-ps { --primary: #A0522D; --secondary: #CD853F; --accent: #E67E22; --hero-img: url('https://images.unsplash.com/photo-1548625361-b844c8ea4a59?auto=format&fit=crop&w=1950&q=80'); }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -44,7 +49,7 @@
         /* HERO SECTION */
         .hero {
             height: 60vh;
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--hero-img);
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), var(--hero-img);
             background-size: cover;
             background-position: center;
             display: flex;
@@ -57,8 +62,8 @@
             padding: 20px;
         }
 
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
 
         /* DESTINATION SELECTOR */
         .dest-selector {
@@ -67,6 +72,7 @@
             gap: 15px;
             margin-top: -30px;
             padding-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .dest-btn {
@@ -158,6 +164,7 @@
 
         .tag.veg { background-color: #e8f5e9; color: #2e7d32; }
         .tag.flight { background-color: #e3f2fd; color: #1565c0; }
+        .tag.deal { background-color: #fff3e0; color: #e65100; }
 
         .btn-link {
             display: inline-block;
@@ -216,7 +223,7 @@
 
     <div class="container">
         <div class="sub-nav">
-            <button class="active" onclick="setTab('stay')">Where to Stay</button>
+            <button class="active" onclick="setTab('stay')">Travel & Stay</button>
             <button onclick="setTab('eat')">Vegetarian Eats</button>
             <button onclick="setTab('do')">Relaxing</button>
         </div>
@@ -224,13 +231,17 @@
         <div id="mendo-content" class="dest-content">
             <div id="mendo-stay" class="content-section active">
                 <div class="card">
+                    <h3><i class="fas fa-car"></i> Road Trip (~2-3 hours)</h3>
+                    <p>Drive north from San Jose via 101/Hwy 1. Beautiful scenic route.</p>
+                </div>
+                <div class="card">
                     <h3><i class="fas fa-home"></i> Cottages on River Road (Guerneville)</h3>
-                    <p><strong>Dec 20-23:</strong> Private studio cottages in the redwoods. Features fire pits for s'mores and a very quiet atmosphere.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+On+River+Road+Guerneville" target="_blank" class="btn-link">View Map</a>
+                    <p><span class="tag deal">~$140/night</span> Private studio cottages in the redwoods. Features fire pits for s'mores and a very quiet atmosphere.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+on+River+Road+Guerneville" target="_blank" class="btn-link">View Map</a>
                 </div>
                 <div class="card">
                     <h3><i class="fas fa-bed"></i> Mendo Bungalow (Mendocino)</h3>
-                    <p><strong>Dec 23-28:</strong> A private rental just south of the village. Feels like a home base rather than a hotel.</p>
+                    <p><span class="tag deal">~$160/night</span> A private rental just south of the village. Feels like a home base rather than a hotel.</p>
                     <a href="https://www.google.com/maps/search/?api=1&query=Mendo+Bungalow+Mendocino" target="_blank" class="btn-link">View Map</a>
                 </div>
                 <div class="budget-box">
@@ -272,19 +283,25 @@
         <div id="sd-content" class="dest-content" style="display:none;">
             <div id="sd-stay" class="content-section active">
                 <div class="card">
-                    <h3><span class="tag flight">Fly or Drive</span> Getting There</h3>
-                    <p>Flights from SJC to SAN are surprisingly affordable (~$600 total). Or we can drive (7-8 hours) and stop in SLO.</p>
+                    <h3><span class="tag flight">Flight Option</span> SJC to SAN</h3>
+                    <p><strong>Cost:</strong> ~$580 - $640 (Roundtrip for 2)</p>
+                    <p><strong>Details:</strong> Direct flights on Alaska (8:00 PM) or Southwest are available. Flight time is only 1.5 hours.</p>
                 </div>
                 <div class="card">
-                    <h3><i class="fas fa-hotel"></i> Bahia Resort Hotel</h3>
-                    <p>Located on Mission Bay. It's calm, walkable, and close to the ocean but away from the downtown noise.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Bahia+Resort+Hotel+San+Diego" target="_blank" class="btn-link">View Map</a>
+                    <h3><i class="fas fa-hotel"></i> Hilton La Jolla Torrey Pines</h3>
+                    <p><span class="tag deal">~$163/night</span> Overlooking the golf course and ocean. Very quiet and upscale.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hilton+La+Jolla+Torrey+Pines" target="_blank" class="btn-link">View Map</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-hotel"></i> Hyatt Regency La Jolla</h3>
+                    <p><span class="tag deal">~$165/night</span> Modern, with a great pool and very close to vegetarian dining options.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+La+Jolla" target="_blank" class="btn-link">View Map</a>
                 </div>
                 <div class="budget-box">
                     <h3>Estimated Budget (Flying)</h3>
                     <div class="budget-row"><span>Flights (2 ppl)</span><span>~$600</span></div>
-                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,400</span></div>
-                    <div class="budget-row"><span>Dining & Ubers</span><span>~$900</span></div>
+                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,350</span></div>
+                    <div class="budget-row"><span>Dining & Ubers</span><span>~$950</span></div>
                     <div class="budget-row total"><span>Total: ~$2,900</span></div>
                 </div>
             </div>
@@ -319,21 +336,25 @@
         <div id="ps-content" class="dest-content" style="display:none;">
             <div id="ps-stay" class="content-section active">
                 <div class="card">
-                    <h3><i class="fas fa-car"></i> Road Trip Only</h3>
-                    <p>Flying is too pricey for this dates, so we drive (~6-7 hrs). It's a fun road trip!</p>
+                    <h3><i class="fas fa-car"></i> Road Trip Recommended</h3>
+                    <p>Flights are pricey (~$800+), so driving is better. It's a ~7 hour drive, perfect for an audiobook.</p>
                 </div>
                 <div class="card">
                     <h3><i class="fas fa-star"></i> The Paloma Resort</h3>
-                    <p>A colorful, mid-century modern resort. Very relaxing pool area and great views of the mountains.</p>
+                    <p><span class="tag deal">~$135/night</span> A colorful, mid-century modern resort. Very relaxing pool area and great views of the mountains.</p>
                     <a href="https://www.google.com/maps/search/?api=1&query=The+Paloma+Resort+Palm+Springs" target="_blank" class="btn-link">View Map</a>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-umbrella"></i> Riviera Resort (Margaritaville)</h3>
+                    <p><span class="tag deal">~$149/night</span> Larger resort feel with two pools and a big spa. Very retro-chic.</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Margaritaville+Resort+Palm+Springs" target="_blank" class="btn-link">View Map</a>
                 </div>
                 <div class="budget-box">
                     <h3>Estimated Budget</h3>
                     <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,100</span></div>
                     <div class="budget-row"><span>Gas & Parking</span><span>~$200</span></div>
-                    <div class="budget-row"><span>Dining (Feast!)</span><span>~$1,400</span></div>
-                    <div class="budget-row total"><span>Total: ~$2,700</span></div>
-                    <p style="font-size:0.8rem; margin-top:10px;">*Most budget friendly option, leaves lots for food!</p>
+                    <div class="budget-row"><span>Dining (Feast!)</span><span>~$1,300</span></div>
+                    <div class="budget-row total"><span>Total: ~$2,600</span></div>
                 </div>
             </div>
 
