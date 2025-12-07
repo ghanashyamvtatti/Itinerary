@@ -185,8 +185,8 @@
                             <Card className="flex flex-col items-center justify-center text-center gap-2 !p-4">
                                 <Icons.Car className="text-purple-400" size={24} />
                                 <div>
-                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Drive</p>
-                                    <p className="text-sm font-bold text-slate-700">Road Trip</p>
+                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Car</p>
+                                    <p className="text-sm font-bold text-slate-700">Dollar (SAN)</p>
                                 </div>
                             </Card>
                         </div>
@@ -218,7 +218,8 @@
                                 <div className="mt-2 bg-blue-50 p-3 rounded-xl">
                                     <p className="text-xs font-bold text-blue-700">Southwest WN 416</p>
                                     <p className="text-sm text-blue-800">6:00 PM ➔ 7:30 PM</p>
-                                    <p className="text-[10px] text-blue-500 mt-1">Arrive at Airport by 4:30 PM</p>
+                                    <p className="text-[10px] text-blue-500 mt-1">Car Dropoff Reserve: 5:30 PM</p>
+                                    <p className="text-[10px] text-red-500 font-bold">⚠️ Drop car by 4:30 PM latest!</p>
                                 </div>
                             </div>
                         </Card>
@@ -234,8 +235,9 @@
                             color="bg-pink-100 text-pink-600"
                             activities={[
                                 "🛫 2:00 PM: Fly SJC to San Diego (Southwest)",
-                                "🛬 3:25 PM: Land & Pick up rental car",
-                                "🌅 Sunset/Evening Walk at La Jolla Cove",
+                                "🛬 3:25 PM: Land @ SAN",
+                                "🚗 3:30 PM: Pick up Dollar Rental (Confirmation: L4301662882)",
+                                "🏨 Check-in: Sheraton La Jolla Hotel",
                                 "🎄 Christmas Dinner: The Shores Restaurant or George's"
                             ]}
                         />
@@ -287,10 +289,10 @@
                             icon={Icons.Car}
                             color="bg-purple-100 text-purple-600"
                             activities={[
-                                "🕛 12:00 PM: Depart San Diego",
+                                "🕛 12:00 PM: Depart Sheraton La Jolla",
                                 "🚗 Drive to Joshua Tree NP (~2.5-3 hrs)",
                                 "🌅 Sunset @ Keys View / Hidden Valley",
-                                "🏨 Night: Check-in to Palm Springs Hotel"
+                                "🏨 Night: Check-in Riviera Resort Palm Springs"
                             ]}
                         />
 
@@ -314,7 +316,7 @@
                             icon={Icons.Moon}
                             color="bg-indigo-100 text-indigo-600"
                             activities={[
-                                "🏊‍♂️ Pool Day or Architecture Tour",
+                                "🏊‍♂️ Pool Day at Riviera Resort",
                                 "✨ Fancy Dinner: Lulu Bistro or Bar Cecil",
                                 "🎆 Midnight: Fireworks near Casino"
                             ]}
@@ -329,26 +331,25 @@
                             activities={[
                                 "🥞 12:00 PM: Lunch & Depart Palm Springs",
                                 "🚗 Drive: ~2.5 hrs to San Diego Airport",
+                                "🛑 4:30 PM: Return Car at Dollar (SAN)",
                                 "✈️ 6:00 PM: Fly Home (Southwest WN 416)"
                             ]}
                         />
 
                         {/* Hotels */}
-                        <SectionTitle icon={Icons.Coffee} title="Where to Stay" color="text-purple-600" />
+                        <SectionTitle icon={Icons.Coffee} title="Confirmed Stays" color="text-purple-600" />
                         <div className="space-y-3">
                             <Card>
                                 <Badge color="blue">San Diego • Dec 25-29</Badge>
-                                <h3 className="font-bold text-slate-800 mt-2">Margaritaville Gaslamp</h3>
-                                <p className="text-xs text-slate-500 mb-2">4 Nights • Fun & Central</p>
-                                <h3 className="font-bold text-slate-800 mt-2">Hilton La Jolla</h3>
-                                <p className="text-xs text-slate-500">4 Nights • Ocean Views</p>
+                                <h3 className="font-bold text-slate-800 mt-2">Sheraton La Jolla Hotel</h3>
+                                <p className="text-xs text-slate-500 mb-2">3299 Holiday Ct, La Jolla, CA</p>
+                                <p className="text-xs font-bold text-slate-400">Conf: 2347166142</p>
                             </Card>
                             <Card>
                                 <Badge color="pink">Palm Springs • Dec 29-Jan 1</Badge>
-                                <h3 className="font-bold text-slate-800 mt-2">Caliente Tropics</h3>
-                                <p className="text-xs text-slate-500 mb-2">3 Nights • Tiki Style</p>
-                                <h3 className="font-bold text-slate-800 mt-2">Los Arboles</h3>
-                                <p className="text-xs text-slate-500">3 Nights • Cute Boutique</p>
+                                <h3 className="font-bold text-slate-800 mt-2">Riviera Resort Palm Springs</h3>
+                                <p className="text-xs text-slate-500 mb-2">1600 N Indian Canyon Dr, Palm Springs</p>
+                                <p className="text-xs font-bold text-slate-400">Conf: 73321587659254</p>
                             </Card>
                         </div>
 
