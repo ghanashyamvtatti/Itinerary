@@ -3,456 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Holiday Escape ❤️</title>
+    <title>Ghanashyam & Varsha's Holiday</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        :root {
-            /* Palette will change dynamically via JS */
-            --primary: #1A4D2E; 
-            --secondary: #4F7942;
-            --accent: #D35400;
-            --bg: #F9F9F9;
-            --card-bg: #FFFFFF;
-            --text-main: #2C3E50;
-            --text-light: #555;
-            --shadow: 0 10px 30px -5px rgba(0,0,0,0.1);
-        }
-
-        /* Destination Themes - FIXED IMAGE LINKS */
-        
-        /* Mendocino: Forest Road / Misty Trees */
-        .theme-mendo { 
-            --primary: #2F4F4F; 
-            --secondary: #5F9EA0; 
-            --accent: #D2691E; 
-            --hero-img: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
-        }
-        
-        /* San Diego: La Jolla Coastline */
-        .theme-sd { 
-            --primary: #006994; 
-            --secondary: #4CA3DD; 
-            --accent: #F4D03F; 
-            --hero-img: url('https://images.unsplash.com/photo-1534351590666-13e3e96b5017?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
-        }
-        
-        /* Palm Springs: Desert Mountains & Palms */
-        .theme-ps { 
-            --primary: #A0522D; 
-            --secondary: #CD853F; 
-            --accent: #E67E22; 
-            --hero-img: url('https://images.unsplash.com/photo-1548625361-b844c8ea4a59?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            transition: background 0.5s ease;
-        }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-        /* HERO SECTION */
-        .hero {
-            height: 60vh;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), var(--hero-img);
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            transition: background-image 0.5s ease-in-out;
-            padding: 20px;
-        }
-
-        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.2rem; font-weight: 300; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-
-        /* DESTINATION SELECTOR */
-        .dest-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: -30px;
-            padding-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .dest-btn {
-            background: white;
-            border: none;
-            padding: 15px 25px;
-            border-radius: 30px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            color: #777;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .dest-btn:hover { transform: translateY(-3px); color: var(--primary); }
-        
-        .dest-btn.active {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* MAIN CONTAINER */
-        .container { max-width: 900px; margin: 20px auto; padding: 0 20px; }
-
-        /* SUB-NAVIGATION (Stay/Eat/Do) */
-        .sub-nav {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .sub-nav button {
-            background: none;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            color: #999;
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .sub-nav button.active { color: var(--primary); }
-        
-        .sub-nav button.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        /* CONTENT SECTIONS */
-        .content-section { display: none; animation: fadeIn 0.5s; }
-        .content-section.active { display: block; }
-
-        /* CARDS */
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 5px solid var(--primary);
-        }
-
-        .card h3 { color: var(--primary); margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        
-        .tag {
-            background-color: #f0f0f0;
-            color: var(--text-main);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            margin-right: 8px;
-        }
-
-        .tag.veg { background-color: #e8f5e9; color: #2e7d32; }
-        .tag.flight { background-color: #e3f2fd; color: #1565c0; }
-        .tag.deal { background-color: #fff3e0; color: #e65100; }
-
-        .btn-link {
-            display: inline-block;
-            margin-top: 15px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            border: 1px solid var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-link:hover { background: var(--primary); color: white; }
-
-        /* BUDGET BOX */
-        .budget-box {
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px dashed #ddd;
-            margin-top: 40px;
-        }
-
-        .budget-row { display: flex; justify-content: space-between; padding: 8px 0; }
-        .total { font-weight: 700; font-size: 1.2rem; color: var(--accent); border-top: 2px solid #eee; margin-top: 10px; padding-top: 10px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.2rem; }
-            .dest-btn { padding: 10px 15px; font-size: 0.8rem; }
-            .sub-nav button { padding: 10px 15px; font-size: 0.9rem; }
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FDFBF7;
         }
     </style>
 </head>
-<body class="theme-mendo">
+<body>
+    <div id="root"></div>
 
-    <header class="hero">
-        <h1 id="hero-title">Winter Escape</h1>
-        <p id="hero-subtitle">Mendocino & Russian River</p>
-    </header>
+    <script type="text/babel">
+        const { useState } = React;
 
-    <div class="dest-selector">
-        <button class="dest-btn active" onclick="setDestination('mendo')">
-            <i class="fas fa-tree"></i> Redwoods
-        </button>
-        <button class="dest-btn" onclick="setDestination('sd')">
-            <i class="fas fa-sun"></i> San Diego
-        </button>
-        <button class="dest-btn" onclick="setDestination('ps')">
-            <i class="fas fa-mountain"></i> Palm Springs
-        </button>
-    </div>
+        // --- ICONS (SVG Components) ---
+        // Replacing Lucide-React imports with raw SVGs for standalone HTML compatibility
+        const IconBase = ({ children, size = 24, className = "" }) => (
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width={size} 
+                height={size} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className={className}
+            >
+                {children}
+            </svg>
+        );
 
-    <div class="container">
-        <div class="sub-nav">
-            <button class="active" onclick="setTab('stay')">Travel & Stay</button>
-            <button onclick="setTab('eat')">Vegetarian Eats</button>
-            <button onclick="setTab('do')">Relaxing</button>
-        </div>
-
-        <div id="mendo-content" class="dest-content">
-            <div id="mendo-stay" class="content-section active">
-                <div class="card">
-                    <h3><i class="fas fa-car"></i> Road Trip (~2-3 hours)</h3>
-                    <p>Drive north from San Jose via 101/Hwy 1. Beautiful scenic route.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-home"></i> Cottages on River Road (Guerneville)</h3>
-                    <p><span class="tag deal">~$140/night</span> Private studio cottages in the redwoods. Features fire pits for s'mores and a very quiet atmosphere.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Cottages+on+River+Road+Guerneville" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-bed"></i> Mendo Bungalow (Mendocino)</h3>
-                    <p><span class="tag deal">~$160/night</span> A private rental just south of the village. Feels like a home base rather than a hotel.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Mendo+Bungalow+Mendocino" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="budget-box">
-                    <h3>Estimated Budget</h3>
-                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,400</span></div>
-                    <div class="budget-row"><span>Gas & Activities</span><span>~$300</span></div>
-                    <div class="budget-row"><span>Dining</span><span>~$1,000</span></div>
-                    <div class="budget-row total"><span>Total: ~$2,700</span></div>
-                </div>
-            </div>
-
-            <div id="mendo-eat" class="content-section">
-                <div class="card">
-                    <h3><span class="tag veg">Vegan</span> Ravens Restaurant</h3>
-                    <p>The crown jewel. A fully vegan fine-dining lodge at the Stanford Inn. Romantic ocean views and incredible food.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag veg">Vegetarian</span> Fog Eater Cafe</h3>
-                    <p>"Cal-Bama" cuisine! Think vegetarian Southern comfort food (biscuits, pimento cheese) in a hip setting.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag">Local</span> boon eat + drink</h3>
-                    <p>Located in Guerneville. You must try the <strong>Polenta Lasagna</strong>.</p>
-                </div>
-            </div>
-
-            <div id="mendo-do" class="content-section">
-                <div class="card">
-                    <h3><i class="fas fa-leaf"></i> Botanical Gardens</h3>
-                    <p>Walk through the winter heathers straight to the cliff's edge to watch the ocean.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-train"></i> The Skunk Train</h3>
-                    <p>A relaxing ride through the redwoods on the "Pudding Creek Express". No hiking required.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="sd-content" class="dest-content" style="display:none;">
-            <div id="sd-stay" class="content-section active">
-                <div class="card">
-                    <h3><span class="tag flight">Flight Option</span> SJC to SAN</h3>
-                    <p><strong>Cost:</strong> ~$580 - $640 (Roundtrip for 2)</p>
-                    <p><strong>Details:</strong> Direct flights on Alaska (8:00 PM) or Southwest are available. Flight time is only 1.5 hours.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-hotel"></i> Hilton La Jolla Torrey Pines</h3>
-                    <p><span class="tag deal">~$163/night</span> Overlooking the golf course and ocean. Very quiet and upscale.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Hilton+La+Jolla+Torrey+Pines" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-hotel"></i> Hyatt Regency La Jolla</h3>
-                    <p><span class="tag deal">~$165/night</span> Modern, with a great pool and very close to vegetarian dining options.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Hyatt+Regency+La+Jolla" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="budget-box">
-                    <h3>Estimated Budget (Flying)</h3>
-                    <div class="budget-row"><span>Flights (2 ppl)</span><span>~$600</span></div>
-                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,350</span></div>
-                    <div class="budget-row"><span>Dining & Ubers</span><span>~$950</span></div>
-                    <div class="budget-row total"><span>Total: ~$2,900</span></div>
-                </div>
-            </div>
-
-            <div id="sd-eat" class="content-section">
-                <div class="card">
-                    <h3><span class="tag veg">Vegan</span> Trilogy Sanctuary</h3>
-                    <p>A rooftop organic cafe in La Jolla with ocean views. Famous for yoga vibes and incredible vegan nachos/bowls.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag">Breakfast</span> The Cottage</h3>
-                    <p>An iconic La Jolla spot. Great vegetarian omelets and French toast on a white picket fence patio.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag">Casual</span> Second Nature</h3>
-                    <p>Pacific Beach. A very plant-forward menu with a cool, open-air atmosphere.</p>
-                </div>
-            </div>
-
-            <div id="sd-do" class="content-section">
-                <div class="card">
-                    <h3><i class="fas fa-umbrella-beach"></i> La Jolla Cove</h3>
-                    <p>Watch the seals and sea lions. It's a beautiful, easy walk along the coast.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-university"></i> Balboa Park</h3>
-                    <p>Wander through the Spanish architecture and gardens. We can visit the museums or just picnic on the grass.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="ps-content" class="dest-content" style="display:none;">
-            <div id="ps-stay" class="content-section active">
-                <div class="card">
-                    <h3><i class="fas fa-car"></i> Road Trip Recommended</h3>
-                    <p>Flights are pricey (~$800+), so driving is better. It's a ~7 hour drive, perfect for an audiobook.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-star"></i> The Paloma Resort</h3>
-                    <p><span class="tag deal">~$135/night</span> A colorful, mid-century modern resort. Very relaxing pool area and great views of the mountains.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=The+Paloma+Resort+Palm+Springs" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-umbrella"></i> Riviera Resort (Margaritaville)</h3>
-                    <p><span class="tag deal">~$149/night</span> Larger resort feel with two pools and a big spa. Very retro-chic.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Margaritaville+Resort+Palm+Springs" target="_blank" class="btn-link">View Map</a>
-                </div>
-                <div class="budget-box">
-                    <h3>Estimated Budget</h3>
-                    <div class="budget-row"><span>Lodging (8 nights)</span><span>~$1,100</span></div>
-                    <div class="budget-row"><span>Gas & Parking</span><span>~$200</span></div>
-                    <div class="budget-row"><span>Dining (Feast!)</span><span>~$1,300</span></div>
-                    <div class="budget-row total"><span>Total: ~$2,600</span></div>
-                </div>
-            </div>
-
-            <div id="ps-eat" class="content-section">
-                <div class="card">
-                    <h3><span class="tag">Romantic</span> Farm</h3>
-                    <p>Intimate, Provençal-style dining with a beautiful garden patio. Very vegetarian friendly.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag veg">Vegan</span> Chef Tanya's Kitchen</h3>
-                    <p>A legendary spot for vegetarian deli sandwiches. Perfect for picking up a lunch to take to the park.</p>
-                </div>
-                <div class="card">
-                    <h3><span class="tag">Comfort</span> Native Foods</h3>
-                    <p>Fast-casual vegan food. Great for a quick, hearty dinner after a day in the sun.</p>
-                </div>
-            </div>
-
-            <div id="ps-do" class="content-section">
-                <div class="card">
-                    <h3><i class="fas fa-mountain"></i> Aerial Tramway</h3>
-                    <p>Take the rotating tram up the mountain for incredible views (and cooler air).</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-seedling"></i> Moorten Botanical Garden</h3>
-                    <p>A "cactarium"! A short, flat, and very unique walk through desert plants.</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        // Data for dynamic title/theme changes
-        const destinations = {
-            'mendo': { title: 'The Redwoods', subtitle: 'Mendocino & Russian River', theme: 'theme-mendo' },
-            'sd': { title: 'SoCal Coast', subtitle: 'San Diego & La Jolla', theme: 'theme-sd' },
-            'ps': { title: 'Desert Escape', subtitle: 'Palm Springs', theme: 'theme-ps' }
+        const Plane = (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>; // Simplified arrow/plane
+        const PlaneReal = (props) => <IconBase {...props}><path d="M2 22h20"/><path d="M13 6l6 6H7l6-6z"/><path d="M19 16l-7-8-7 8"/></IconBase>; // Actually let's use a nice plane path
+        // Lucide Plane
+        const IconPlane = (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>; 
+        // Re-doing icons with standard paths for better visuals
+        const Icons = {
+            Plane: (props) => <IconBase {...props}><path d="M20.66 12.83l-7.07-7.07-1.42 1.42 4.24 4.24H2v2h14.41l-4.24 4.24 1.42 1.42 7.07-7.07a1 1 0 0 0 0-1.42z"/><path d="M2 12h10"/></IconBase>, // Custom flight icon
+            Car: (props) => <IconBase {...props}><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h8"/></IconBase>,
+            MapPin: (props) => <IconBase {...props}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></IconBase>,
+            Calendar: (props) => <IconBase {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></IconBase>,
+            Sun: (props) => <IconBase {...props}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></IconBase>,
+            Snowflake: (props) => <IconBase {...props}><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></IconBase>,
+            Camera: (props) => <IconBase {...props}><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></IconBase>,
+            Coffee: (props) => <IconBase {...props}><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></IconBase>,
+            Moon: (props) => <IconBase {...props}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></IconBase>,
+            CheckCircle: (props) => <IconBase {...props}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-7-7"/></IconBase>,
+            Circle: (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"/></IconBase>,
+            ArrowRight: (props) => <IconBase {...props}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></IconBase>,
+            Heart: (props) => <IconBase {...props}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></IconBase>,
+            PlaneOutline: (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>
         };
 
-        let currentDest = 'mendo';
+        // --- COMPONENTS ---
 
-        function setDestination(destId) {
-            currentDest = destId;
-            
-            // 1. Update Buttons
-            document.querySelectorAll('.dest-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+        const Card = ({ children, className = "" }) => (
+            <div className={`bg-white rounded-3xl shadow-sm border border-slate-100 p-5 ${className}`}>
+                {children}
+            </div>
+        );
 
-            // 2. Update Theme & Hero
-            document.body.className = destinations[destId].theme;
-            document.getElementById('hero-title').innerText = destinations[destId].title;
-            document.getElementById('hero-subtitle').innerText = destinations[destId].subtitle;
+        const Badge = ({ children, color = "blue" }) => {
+            const colors = {
+                blue: "bg-blue-100 text-blue-700",
+                pink: "bg-pink-100 text-pink-700",
+                purple: "bg-purple-100 text-purple-700",
+                green: "bg-green-100 text-green-700",
+                orange: "bg-orange-100 text-orange-700",
+            };
+            return (
+                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${colors[color] || colors.blue}`}>
+                    {children}
+                </span>
+            );
+        };
 
-            // 3. Hide all destination content divs
-            document.querySelectorAll('.dest-content').forEach(div => div.style.display = 'none');
-            
-            // 4. Show selected destination content
-            document.getElementById(destId + '-content').style.display = 'block';
+        const SectionTitle = ({ icon: Icon, title, color = "text-slate-800" }) => (
+            <div className="flex items-center gap-2 mb-4 mt-8 px-2">
+                <div className={`p-2 rounded-xl ${color.replace('text-', 'bg-').replace('800', '100')}`}>
+                    <Icon size={20} className={color} />
+                </div>
+                <h2 className={`text-xl font-black ${color}`}>{title}</h2>
+            </div>
+        );
 
-            // 5. Reset sub-tabs to "Stay"
-            setTab('stay');
-            
-            // Reset sub-nav buttons visual state
-            document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
-            document.querySelector('.sub-nav button:first-child').classList.add('active');
+        const DayTimeline = ({ date, title, location, activities, icon: Icon, color }) => {
+            const [isOpen, setIsOpen] = useState(false);
+
+            return (
+                <div className="mb-4">
+                    <button 
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="w-full text-left bg-white p-4 rounded-3xl shadow-sm border border-slate-100 flex items-center justify-between group transition-all active:scale-95"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className={`h-12 w-12 rounded-2xl flex items-center justify-center text-xl shadow-inner ${color}`}>
+                                <Icon size={24} />
+                            </div>
+                            <div>
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-wide">{date}</p>
+                                <h3 className="text-lg font-bold text-slate-800 leading-tight">{title}</h3>
+                                <p className="text-xs text-slate-500 font-medium flex items-center gap-1 mt-1">
+                                    <Icons.MapPin size={10} /> {location}
+                                </p>
+                            </div>
+                        </div>
+                        <div className={`transform transition-transform ${isOpen ? 'rotate-90' : ''} text-slate-300`}>
+                            <Icons.ArrowRight size={20} />
+                        </div>
+                    </button>
+
+                    {isOpen && (
+                        <div className="mt-2 ml-4 pl-8 border-l-2 border-slate-100 py-2 space-y-3">
+                            {activities.map((act, idx) => (
+                                <div key={idx} className="bg-white/50 p-3 rounded-2xl text-sm text-slate-600 leading-relaxed border border-slate-50">
+                                    {act}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const PackingItem = ({ item }) => {
+            const [checked, setChecked] = useState(false);
+            return (
+                <button 
+                    onClick={() => setChecked(!checked)}
+                    className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${checked ? 'bg-green-50 text-green-700' : 'bg-white hover:bg-slate-50 text-slate-600'}`}
+                >
+                    {checked ? <Icons.CheckCircle size={20} className="text-green-500 flex-shrink-0" /> : <Icons.Circle size={20} className="text-slate-300 flex-shrink-0" />}
+                    <span className={`text-sm font-medium ${checked ? 'line-through opacity-70' : ''}`}>{item}</span>
+                </button>
+            );
+        };
+
+        // --- MAIN APP ---
+
+        function App() {
+            return (
+                <div className="min-h-screen bg-[#FDFBF7] font-sans pb-20 selection:bg-pink-200">
+                    
+                    {/* Hero Header */}
+                    <div className="bg-white rounded-b-[40px] shadow-sm p-6 pt-12 text-center relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300"></div>
+                        <div className="inline-block p-3 rounded-full bg-pink-50 mb-4 animate-bounce">
+                            <Icons.Heart className="text-pink-400 fill-pink-400" size={24} />
+                        </div>
+                        <h1 className="text-3xl font-black text-slate-800 mb-2 tracking-tight">Holiday Adventure</h1>
+                        <p className="text-slate-500 font-medium text-sm mb-4">Ghanashyam & Varsha's Trip</p>
+                        <div className="inline-flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-full text-xs font-bold text-slate-600 border border-slate-100">
+                            <Icons.Calendar size={14} className="text-blue-400" />
+                            Dec 25 - Jan 1
+                        </div>
+                    </div>
+
+                    <div className="max-w-md mx-auto px-4 -mt-6">
+                        
+                        {/* Quick Stats Grid */}
+                        <div className="grid grid-cols-2 gap-3 mb-2">
+                            <Card className="flex flex-col items-center justify-center text-center gap-2 !p-4">
+                                <Icons.PlaneOutline className="text-blue-400" size={24} />
+                                <div>
+                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Route</p>
+                                    <p className="text-sm font-bold text-slate-700">SJC ↔ SAN</p>
+                                </div>
+                            </Card>
+                            <Card className="flex flex-col items-center justify-center text-center gap-2 !p-4">
+                                <Icons.Car className="text-purple-400" size={24} />
+                                <div>
+                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Drive</p>
+                                    <p className="text-sm font-bold text-slate-700">Road Trip</p>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Flight Details */}
+                        <SectionTitle icon={Icons.PlaneOutline} title="Flights" color="text-blue-600" />
+                        <Card className="space-y-4">
+                            <div className="flex justify-between items-center border-b border-slate-50 pb-4">
+                                <div>
+                                    <Badge color="pink">DEPART • DEC 25</Badge>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <span className="text-2xl font-black text-slate-700">SJC</span>
+                                        <Icons.ArrowRight size={16} className="text-slate-300" />
+                                        <span className="text-2xl font-black text-slate-700">SAN</span>
+                                    </div>
+                                    <p className="text-xs text-slate-500 mt-1">Aim for ~9:00 AM Departure</p>
+                                </div>
+                                <Icons.PlaneOutline className="text-pink-200" size={32} />
+                            </div>
+                            
+                            <div className="pt-2">
+                                <Badge color="blue">RETURN • JAN 01</Badge>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <span className="text-2xl font-black text-slate-700">SAN</span>
+                                    <Icons.ArrowRight size={16} className="text-slate-300" />
+                                    <span className="text-2xl font-black text-slate-700">SJC</span>
+                                </div>
+                                <div className="mt-2 bg-blue-50 p-3 rounded-xl">
+                                    <p className="text-xs font-bold text-blue-700">Recommended:</p>
+                                    <p className="text-sm text-blue-800">Alaska Airlines @ 4:11 PM</p>
+                                    <p className="text-[10px] text-blue-500 mt-1">Allows stress-free drive from Palm Springs</p>
+                                </div>
+                            </div>
+                        </Card>
+
+                        {/* Daily Itinerary */}
+                        <SectionTitle icon={Icons.MapPin} title="The Plan" color="text-pink-600" />
+                        
+                        <DayTimeline 
+                            date="Thu, Dec 25"
+                            title="Arrival & Seals"
+                            location="San Diego"
+                            icon={Icons.PlaneOutline}
+                            color="bg-pink-100 text-pink-600"
+                            activities={[
+                                "🛫 Fly SJC to San Diego (AM)",
+                                "🚗 Pick up rental car @ SAN",
+                                "🌊 Walk La Jolla Cove to see sea lions 🦭",
+                                "🎄 Christmas Dinner: The Shores Restaurant or George's"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Fri, Dec 26"
+                            title="Culture & Vegan Eats"
+                            location="San Diego"
+                            icon={Icons.Sun}
+                            color="bg-orange-100 text-orange-600"
+                            activities={[
+                                "🏛️ Morning: Balboa Park (Gardens/Museums)",
+                                "🍝 Lunch: Civico 1845 (Italian Vegan Menu)",
+                                "🏙️ Evening: Explore Gaslamp Quarter",
+                                "🍕 Dinner: Donna Jean (Home-style pizza)"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Sat, Dec 27"
+                            title="Island Vibes"
+                            location="San Diego"
+                            icon={Icons.Camera}
+                            color="bg-blue-100 text-blue-600"
+                            activities={[
+                                "🏝️ Morning: Coronado Island (Beach walk @ Hotel Del)",
+                                "🦓 Afternoon: San Diego Zoo (Optional)",
+                                "🍛 Dinner: Plumeria Vegetarian (Thai)"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Sun, Dec 28"
+                            title="The Scenic Drive"
+                            location="On the Road"
+                            icon={Icons.Car}
+                            color="bg-purple-100 text-purple-600"
+                            activities={[
+                                "🚗 Drive: SD ➡️ Palm Springs (via Julian)",
+                                "🥧 Stop: Julian for Apple Pie & Mountain Air",
+                                "🏨 Check-in: Palm Springs Hotel",
+                                "🍹 Dinner: The Tropicale (Retro vibes)"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Mon, Dec 29"
+                            title="Up in the Air"
+                            location="Palm Springs"
+                            icon={Icons.Snowflake}
+                            color="bg-cyan-100 text-cyan-600"
+                            activities={[
+                                "🚠 Morning: Aerial Tramway (8,500ft!) - Bring coats 🧥",
+                                "🍔 Lunch: Chef Tanya's Kitchen (Famous vegan burgers)",
+                                "🌵 Evening: Stroll Palm Canyon Drive"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Tue, Dec 30"
+                            title="Joshua Tree"
+                            location="National Park"
+                            icon={Icons.Sun}
+                            color="bg-yellow-100 text-yellow-600"
+                            activities={[
+                                "🏜️ Day Trip: Joshua Tree National Park (~45m drive)",
+                                "🥾 Hike: Hidden Valley Nature Trail (1 mile, easy)",
+                                "🎸 Dinner: Pappy & Harriet's (Pioneertown)"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Wed, Dec 31"
+                            title="New Year's Eve"
+                            location="Palm Springs"
+                            icon={Icons.Moon}
+                            color="bg-indigo-100 text-indigo-600"
+                            activities={[
+                                "🏊‍♂️ Pool Day or Mid-Century Architecture Tour",
+                                "✨ Fancy Dinner: Lulu Bistro or Bar Cecil",
+                                "🎆 Midnight: Fireworks near Casino"
+                            ]}
+                        />
+
+                        <DayTimeline 
+                            date="Thu, Jan 01"
+                            title="The Return"
+                            location="Travel Day"
+                            icon={Icons.PlaneOutline}
+                            color="bg-green-100 text-green-600"
+                            activities={[
+                                "🥞 10:00 AM: Brunch & Depart Palm Springs",
+                                "🚗 Drive: ~2.5 hrs to San Diego Airport",
+                                "✈️ 4:11 PM: Fly Home (Alaska Airlines)"
+                            ]}
+                        />
+
+                        {/* Hotels */}
+                        <SectionTitle icon={Icons.Coffee} title="Where to Stay" color="text-purple-600" />
+                        <div className="space-y-3">
+                            <Card>
+                                <Badge color="blue">San Diego • Dec 25-28</Badge>
+                                <h3 className="font-bold text-slate-800 mt-2">Margaritaville Gaslamp</h3>
+                                <p className="text-xs text-slate-500 mb-2">~$171/night • Fun & Central</p>
+                                <h3 className="font-bold text-slate-800 mt-2">Hilton La Jolla</h3>
+                                <p className="text-xs text-slate-500">~$151/night • Ocean Views</p>
+                            </Card>
+                            <Card>
+                                <Badge color="pink">Palm Springs • Dec 28-Jan 1</Badge>
+                                <h3 className="font-bold text-slate-800 mt-2">Caliente Tropics</h3>
+                                <p className="text-xs text-slate-500 mb-2">~$115/night • Tiki Style & Value</p>
+                                <h3 className="font-bold text-slate-800 mt-2">Los Arboles</h3>
+                                <p className="text-xs text-slate-500">~$147/night • Cute Boutique</p>
+                            </Card>
+                        </div>
+
+                        {/* Packing List */}
+                        <SectionTitle icon={Icons.CheckCircle} title="Packing List" color="text-green-600" />
+                        <Card className="space-y-4">
+                            <div>
+                                <h4 className="font-bold text-slate-700 text-sm mb-2 uppercase tracking-wider">Cold Gear 🧥</h4>
+                                <div className="space-y-1">
+                                    <PackingItem item="Puffer Jacket (For Tramway)" />
+                                    <PackingItem item="Beanie & Gloves" />
+                                    <PackingItem item="Thermal Layer" />
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-700 text-sm mb-2 uppercase tracking-wider">Warm Gear ☀️</h4>
+                                <div className="space-y-1">
+                                    <PackingItem item="Sunglasses & Sunscreen" />
+                                    <PackingItem item="Running Gear (Shorts/Tech shirts)" />
+                                    <PackingItem item="Lip Balm (Desert air is dry!)" />
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-slate-700 text-sm mb-2 uppercase tracking-wider">Road Trip 🚗</h4>
+                                <div className="space-y-1">
+                                    <PackingItem item="Driver's License & Insurance" />
+                                    <PackingItem item="Phone Mount for Rental" />
+                                    <PackingItem item="Car Charger (USB-A & C)" />
+                                    <PackingItem item="Reusable Water Bottle" />
+                                </div>
+                            </div>
+                        </Card>
+
+                        {/* Footer */}
+                        <div className="mt-12 text-center pb-8">
+                            <p className="text-slate-400 text-sm">Have a wonderful trip! ✈️</p>
+                            <p className="text-slate-300 text-xs mt-1">Ghanashyam & Varsha</p>
+                        </div>
+
+                    </div>
+                </div>
+            );
         }
 
-        function setTab(tabName) {
-            // Update Sub-Nav Buttons
-            if(event) {
-                document.querySelectorAll('.sub-nav button').forEach(btn => btn.classList.remove('active'));
-                if(event.target.tagName === 'BUTTON') event.target.classList.add('active');
-            }
-
-            // Hide all sections within current destination
-            const container = document.getElementById(currentDest + '-content');
-            container.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
-
-            // Show target section
-            document.getElementById(currentDest + '-' + tabName).classList.add('active');
-        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
