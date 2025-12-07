@@ -32,7 +32,6 @@
         const { useState } = React;
 
         // --- ICONS (SVG Components) ---
-        // Replacing Lucide-React imports with raw SVGs for standalone HTML compatibility
         const IconBase = ({ children, size = 24, className = "" }) => (
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -50,13 +49,8 @@
             </svg>
         );
 
-        const Plane = (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>; // Simplified arrow/plane
-        const PlaneReal = (props) => <IconBase {...props}><path d="M2 22h20"/><path d="M13 6l6 6H7l6-6z"/><path d="M19 16l-7-8-7 8"/></IconBase>; // Actually let's use a nice plane path
-        // Lucide Plane
-        const IconPlane = (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>; 
-        // Re-doing icons with standard paths for better visuals
         const Icons = {
-            Plane: (props) => <IconBase {...props}><path d="M20.66 12.83l-7.07-7.07-1.42 1.42 4.24 4.24H2v2h14.41l-4.24 4.24 1.42 1.42 7.07-7.07a1 1 0 0 0 0-1.42z"/><path d="M2 12h10"/></IconBase>, // Custom flight icon
+            Plane: (props) => <IconBase {...props}><path d="M20.66 12.83l-7.07-7.07-1.42 1.42 4.24 4.24H2v2h14.41l-4.24 4.24 1.42 1.42 7.07-7.07a1 1 0 0 0 0-1.42z"/><path d="M2 12h10"/></IconBase>,
             Car: (props) => <IconBase {...props}><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h8"/></IconBase>,
             MapPin: (props) => <IconBase {...props}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></IconBase>,
             Calendar: (props) => <IconBase {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></IconBase>,
@@ -69,7 +63,8 @@
             Circle: (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"/></IconBase>,
             ArrowRight: (props) => <IconBase {...props}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></IconBase>,
             Heart: (props) => <IconBase {...props}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></IconBase>,
-            PlaneOutline: (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>
+            PlaneOutline: (props) => <IconBase {...props}><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M13 2v20"/></IconBase>,
+            Fish: (props) => <IconBase {...props}><path d="M6.5 12c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/><path d="M18 13c0-4.97-3.13-9-7-9-2.6 0-4.93 1.83-6.17 4.54C3.26 9.1 2 10.45 2 12c0 1.93 1.57 3.5 3.5 3.5 1.55 0 2.9-.66 3.73-1.69C10.63 17.06 13.92 19 17.5 19c.28 0 .55-.02.82-.05.54 2.08 2.37 3.55 4.68 3.55V1.5c-2.31 0-4.14 1.47-4.68 3.55-.27-.03-.54-.05-.82-.05z"/></IconBase>
         };
 
         // --- COMPONENTS ---
@@ -207,7 +202,8 @@
                                         <Icons.ArrowRight size={16} className="text-slate-300" />
                                         <span className="text-2xl font-black text-slate-700">SAN</span>
                                     </div>
-                                    <p className="text-xs text-slate-500 mt-1">Aim for ~9:00 AM Departure</p>
+                                    <p className="text-xs text-slate-500 mt-1 font-bold">Southwest WN 2459</p>
+                                    <p className="text-xs text-slate-500">2:00 PM ➔ 3:25 PM</p>
                                 </div>
                                 <Icons.PlaneOutline className="text-pink-200" size={32} />
                             </div>
@@ -220,9 +216,9 @@
                                     <span className="text-2xl font-black text-slate-700">SJC</span>
                                 </div>
                                 <div className="mt-2 bg-blue-50 p-3 rounded-xl">
-                                    <p className="text-xs font-bold text-blue-700">Recommended:</p>
-                                    <p className="text-sm text-blue-800">Alaska Airlines @ 4:11 PM</p>
-                                    <p className="text-[10px] text-blue-500 mt-1">Allows stress-free drive from Palm Springs</p>
+                                    <p className="text-xs font-bold text-blue-700">Southwest WN 416</p>
+                                    <p className="text-sm text-blue-800">6:00 PM ➔ 7:30 PM</p>
+                                    <p className="text-[10px] text-blue-500 mt-1">Arrive at Airport by 4:30 PM</p>
                                 </div>
                             </div>
                         </Card>
@@ -232,29 +228,28 @@
                         
                         <DayTimeline 
                             date="Thu, Dec 25"
-                            title="Arrival & Seals"
+                            title="Arrival & Christmas"
                             location="San Diego"
                             icon={Icons.PlaneOutline}
                             color="bg-pink-100 text-pink-600"
                             activities={[
-                                "🛫 Fly SJC to San Diego (AM)",
-                                "🚗 Pick up rental car @ SAN",
-                                "🌊 Walk La Jolla Cove to see sea lions 🦭",
+                                "🛫 2:00 PM: Fly SJC to San Diego (Southwest)",
+                                "🛬 3:25 PM: Land & Pick up rental car",
+                                "🌅 Sunset/Evening Walk at La Jolla Cove",
                                 "🎄 Christmas Dinner: The Shores Restaurant or George's"
                             ]}
                         />
 
                         <DayTimeline 
                             date="Fri, Dec 26"
-                            title="Culture & Vegan Eats"
+                            title="SeaWorld Adventure"
                             location="San Diego"
-                            icon={Icons.Sun}
-                            color="bg-orange-100 text-orange-600"
+                            icon={Icons.Fish}
+                            color="bg-cyan-100 text-cyan-600"
                             activities={[
-                                "🏛️ Morning: Balboa Park (Gardens/Museums)",
-                                "🍝 Lunch: Civico 1845 (Italian Vegan Menu)",
-                                "🏙️ Evening: Explore Gaslamp Quarter",
-                                "🍕 Dinner: Donna Jean (Home-style pizza)"
+                                "🐋 All Day: SeaWorld San Diego",
+                                "🎢 Ride the Emperor Coaster",
+                                "🌆 Evening: Dinner in Little Italy"
                             ]}
                         />
 
@@ -273,41 +268,42 @@
 
                         <DayTimeline 
                             date="Sun, Dec 28"
-                            title="The Scenic Drive"
-                            location="On the Road"
-                            icon={Icons.Car}
-                            color="bg-purple-100 text-purple-600"
+                            title="Culture & Vegan Eats"
+                            location="San Diego"
+                            icon={Icons.Sun}
+                            color="bg-orange-100 text-orange-600"
                             activities={[
-                                "🚗 Drive: SD ➡️ Palm Springs (via Julian)",
-                                "🥧 Stop: Julian for Apple Pie & Mountain Air",
-                                "🏨 Check-in: Palm Springs Hotel",
-                                "🍹 Dinner: The Tropicale (Retro vibes)"
+                                "🏛️ Morning: Balboa Park (Gardens/Museums)",
+                                "🍝 Lunch: Civico 1845 (Italian Vegan Menu)",
+                                "🏙️ Evening: Explore Gaslamp Quarter",
+                                "🍕 Dinner: Donna Jean (Home-style pizza)"
                             ]}
                         />
 
                         <DayTimeline 
                             date="Mon, Dec 29"
-                            title="Up in the Air"
-                            location="Palm Springs"
-                            icon={Icons.Snowflake}
-                            color="bg-cyan-100 text-cyan-600"
+                            title="Desert Drive & Sunset"
+                            location="On the Road"
+                            icon={Icons.Car}
+                            color="bg-purple-100 text-purple-600"
                             activities={[
-                                "🚠 Morning: Aerial Tramway (8,500ft!) - Bring coats 🧥",
-                                "🍔 Lunch: Chef Tanya's Kitchen (Famous vegan burgers)",
-                                "🌵 Evening: Stroll Palm Canyon Drive"
+                                "🕛 12:00 PM: Depart San Diego",
+                                "🚗 Drive to Joshua Tree NP (~2.5-3 hrs)",
+                                "🌅 Sunset @ Keys View / Hidden Valley",
+                                "🏨 Night: Check-in to Palm Springs Hotel"
                             ]}
                         />
 
                         <DayTimeline 
                             date="Tue, Dec 30"
-                            title="Joshua Tree"
-                            location="National Park"
-                            icon={Icons.Sun}
-                            color="bg-yellow-100 text-yellow-600"
+                            title="Aerial Tramway"
+                            location="Palm Springs"
+                            icon={Icons.Snowflake}
+                            color="bg-teal-100 text-teal-600"
                             activities={[
-                                "🏜️ Day Trip: Joshua Tree National Park (~45m drive)",
-                                "🥾 Hike: Hidden Valley Nature Trail (1 mile, easy)",
-                                "🎸 Dinner: Pappy & Harriet's (Pioneertown)"
+                                "🚠 Morning: Aerial Tramway (8,500ft!)",
+                                "🧥 Bring warm coats - it's cold up there!",
+                                "🍔 Lunch: Chef Tanya's Kitchen"
                             ]}
                         />
 
@@ -318,7 +314,7 @@
                             icon={Icons.Moon}
                             color="bg-indigo-100 text-indigo-600"
                             activities={[
-                                "🏊‍♂️ Pool Day or Mid-Century Architecture Tour",
+                                "🏊‍♂️ Pool Day or Architecture Tour",
                                 "✨ Fancy Dinner: Lulu Bistro or Bar Cecil",
                                 "🎆 Midnight: Fireworks near Casino"
                             ]}
@@ -331,9 +327,9 @@
                             icon={Icons.PlaneOutline}
                             color="bg-green-100 text-green-600"
                             activities={[
-                                "🥞 10:00 AM: Brunch & Depart Palm Springs",
+                                "🥞 12:00 PM: Lunch & Depart Palm Springs",
                                 "🚗 Drive: ~2.5 hrs to San Diego Airport",
-                                "✈️ 4:11 PM: Fly Home (Alaska Airlines)"
+                                "✈️ 6:00 PM: Fly Home (Southwest WN 416)"
                             ]}
                         />
 
@@ -341,18 +337,18 @@
                         <SectionTitle icon={Icons.Coffee} title="Where to Stay" color="text-purple-600" />
                         <div className="space-y-3">
                             <Card>
-                                <Badge color="blue">San Diego • Dec 25-28</Badge>
+                                <Badge color="blue">San Diego • Dec 25-29</Badge>
                                 <h3 className="font-bold text-slate-800 mt-2">Margaritaville Gaslamp</h3>
-                                <p className="text-xs text-slate-500 mb-2">~$171/night • Fun & Central</p>
+                                <p className="text-xs text-slate-500 mb-2">4 Nights • Fun & Central</p>
                                 <h3 className="font-bold text-slate-800 mt-2">Hilton La Jolla</h3>
-                                <p className="text-xs text-slate-500">~$151/night • Ocean Views</p>
+                                <p className="text-xs text-slate-500">4 Nights • Ocean Views</p>
                             </Card>
                             <Card>
-                                <Badge color="pink">Palm Springs • Dec 28-Jan 1</Badge>
+                                <Badge color="pink">Palm Springs • Dec 29-Jan 1</Badge>
                                 <h3 className="font-bold text-slate-800 mt-2">Caliente Tropics</h3>
-                                <p className="text-xs text-slate-500 mb-2">~$115/night • Tiki Style & Value</p>
+                                <p className="text-xs text-slate-500 mb-2">3 Nights • Tiki Style</p>
                                 <h3 className="font-bold text-slate-800 mt-2">Los Arboles</h3>
-                                <p className="text-xs text-slate-500">~$147/night • Cute Boutique</p>
+                                <p className="text-xs text-slate-500">3 Nights • Cute Boutique</p>
                             </Card>
                         </div>
 
